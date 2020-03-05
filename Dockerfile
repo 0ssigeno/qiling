@@ -4,16 +4,20 @@ MAINTAINER "Kevin Foo <chbsd64@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG BRANCH="emotet"
+
+
 RUN apt-get update \
   && apt-get -y upgrade \
-  && apt-get install -y python3-pip git cmake
+  && apt-get install -y python3-pip git cmake \
+  && apt-get install -y unzip vim
 
-WORKDIR /
 
-RUN git clone https://github.com/qilingframework/qiling
+RUN git clone -b "$BRANCH" https://github.com/0ssigeno/qiling
 
-RUN cd /qiling \
-  && pip3 install -r requirements.txt \
+WORKDIR /qiling
+
+RUN pip3 install -r requirements.txt \
   && python3 setup.py install
 
 RUN pysite1=$(python3 -c "import site; print(site.getsitepackages()[0])"); \
@@ -25,6 +29,5 @@ RUN apt-get clean \
 
 ENV HOME /qiling
 
-WORKDIR /qiling
 
 CMD bash

@@ -33,7 +33,7 @@ class Process:
         elif self.ql.arch == QL_X8664:
             self.ql.dlls = os.path.join("Windows","System32")
 
-        if not dll_name.endswith(".dll"):
+        if not dll_name.endswith(".dll") and not dll_name.endswith(".drv"):
             dll_name = dll_name + '.dll'
         
         path = os.path.join(self.ql.rootfs, self.ql.dlls, dll_name)
