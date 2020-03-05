@@ -13,7 +13,7 @@ RUN apt-get update \
   && apt-get install -y unzip vim
 
 
-RUN git clone -b "$BRANCH" https://github.com/0ssigeno/qiling
+RUN git clone -b "$BRANCH" --single-branch https://github.com/0ssigeno/qiling
 
 WORKDIR /qiling
 
