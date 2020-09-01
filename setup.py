@@ -24,7 +24,7 @@ requirements = [
 with open("README.md", "r", encoding="utf-8") as ld:
     long_description = ld.read()
 
-if "linux"  in sys.platform:
+if sys.platform in ('linux', 'cygwin'):
     requirements += ["python-magic>=0.4.16"]
 else:
     requirements += ["python-magic-bin>=0.4.14"]
@@ -49,7 +49,7 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 3 - Alpha',
 
         # Indicate who your project is intended for
         'Intended Audience :: Developers',
@@ -66,6 +66,7 @@ setup(
     keywords='qiling binary emulator framework malware analysis UEFI IoT',
 
     packages=find_packages(),
+    scripts=['qltool'],
     include_package_data=True,
     install_requires=requirements,
 )
